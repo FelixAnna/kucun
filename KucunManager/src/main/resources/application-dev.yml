@@ -1,0 +1,49 @@
+server:
+    port: 80
+    context-path: /
+spring:
+  # Encoding config 解决中文乱码
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+    multipart:
+      enabled: true                 #默认支持文件上传
+      file-size-threshold: 0      #支持文件写入磁盘
+      location:                     #上传文件的临时目录
+      max-file-size: 1MB           #最大支持文件大小
+      max-request-size: 10MB      #最大支持请求大小
+  tomcat:
+    uri-encoding: UTF-8
+
+  # Jpa and datasource config
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+  datasource:
+    url: jdbc:mysql://localhost:3306/kucun?&useUnicode=true&characterEncoding=utf8&useSSL=true
+    username: root
+    password: 1qa@WS
+
+# REDIS (RedisProperties)
+  redis:
+    database: 0       # Redis default database
+    host: 127.0.0.1    # Redis host
+    port: 6379         # Redis port
+    password: kucunpwd         # Redis password
+    timeout: 0        #
+    pool:
+      max-active: 4   # pool settings ...
+      max-wait: -1    #
+      max-idle: 4     #
+      min-idle: 0     #
+logging:
+  level:
+    ROOT: ERROR
+    org.springframework: ERROR
+    org.springframework.data: ERROR
+    com.xiangyong.manager: INFO
+  #file: d:/logs/application.log
