@@ -2,9 +2,6 @@ package com.xiangyong.manager.core.rpc;
 
 import com.alibaba.fastjson.JSON;
 
-/**
- * Created by Rex.Lei on 2017/8/31.
- */
 public class ApiResult<T> {
 
     public static final int SUCCESS_CODE = 0;

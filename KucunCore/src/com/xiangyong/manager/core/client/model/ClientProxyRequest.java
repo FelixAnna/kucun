@@ -4,9 +4,6 @@ import com.xiangyong.manager.core.client.enums.RequestSource;
 
 import java.io.Serializable;
 
-/**
- * Created by Rex.Lei on 2017/8/30.
- */
 public class ClientProxyRequest implements Serializable {
 
     private String cmd;

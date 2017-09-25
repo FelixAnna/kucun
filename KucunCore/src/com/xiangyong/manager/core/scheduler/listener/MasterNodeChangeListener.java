@@ -9,9 +9,6 @@ import com.github.ltsopensource.core.logger.LoggerFactory;
 import com.github.ltsopensource.spring.boot.annotation.MasterNodeListener;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 
-/**
- * @author Robert HG (254963746@qq.com) on 4/9/16.
- */
 @ConditionalOnBean(annotation = EnableLTS.class)
 @MasterNodeListener
 public class MasterNodeChangeListener implements MasterChangeListener {

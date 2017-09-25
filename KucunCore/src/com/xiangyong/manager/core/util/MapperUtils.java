@@ -6,9 +6,6 @@ import org.springframework.data.mapping.model.MappingException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Rex.Lei on 2017/8/31.
- */
 public class MapperUtils {
 
     /**

@@ -1,8 +1,5 @@
 package com.xiangyong.manager.core.exception;
 
-/**
- * Created by Rex.Lei on 2017/8/30.
- */
 public class ApplicationException extends RuntimeException{
 
     private com.xiangyong.manager.core.exception.ResponseCode responseCode;

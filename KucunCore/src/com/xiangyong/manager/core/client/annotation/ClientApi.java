@@ -7,9 +7,6 @@ import java.lang.annotation.Target;
 
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-/**
- * Created by Rex.Lei on 2017/8/30.
- */
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RUNTIME)
 @Inherited

@@ -4,9 +4,6 @@ import com.alibaba.fastjson.JSON;
 
 import java.io.Serializable;
 
-/**
- * Created by Rex.Lei on 2017/8/30.
- */
 public class ResponseCode implements Serializable {
 
     // 成功

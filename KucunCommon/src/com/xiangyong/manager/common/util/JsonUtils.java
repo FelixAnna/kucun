@@ -7,9 +7,6 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 
 import java.util.List;
 
-/**
- * Created by Rex.Lei on 2017/8/30.
- */
 public class JsonUtils {
 
     private static final SerializeConfig config;
