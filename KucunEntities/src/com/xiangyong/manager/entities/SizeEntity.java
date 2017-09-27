@@ -12,6 +12,7 @@ public class SizeEntity {
     private Integer maxHeight;
     private Integer minHeight;
     private Timestamp createdTime;
+    private int userId;
 
     @Id
     @Column(name = "size_id", nullable = false)
@@ -99,5 +100,15 @@ public class SizeEntity {
         result = 31 * result + (minHeight != null ? minHeight.hashCode() : 0);
         result = 31 * result + (createdTime != null ? createdTime.hashCode() : 0);
         return result;
+    }
+
+    @Basic
+    @Column(name = "user_id", nullable = false)
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

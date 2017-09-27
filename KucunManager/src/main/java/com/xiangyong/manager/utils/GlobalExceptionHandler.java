@@ -1,7 +1,9 @@
 package com.xiangyong.manager.utils;
 
+import com.xiangyong.manager.core.exception.BadRequestException;
 import com.xiangyong.manager.core.exception.CustomerError;
 import com.xiangyong.manager.core.exception.DataNotFoundException;
+import com.xiangyong.manager.core.exception.ForbiddenException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -33,5 +35,26 @@ public class GlobalExceptionHandler {
     public CustomerError NotFoundError(Exception e){
         logger.error(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(),e);
         return new CustomerError(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+    }
+
+    @ExceptionHandler(ForbiddenException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    @ResponseBody
+    public CustomerError ForbiddenException(ForbiddenException e){
+        logger.error(HttpStatus.FORBIDDEN.getReasonPhrase(),e);
+        if(e.getId()>0) {
+            return new CustomerError(HttpStatus.FORBIDDEN.value(), String.format("Forbidden:id = %d.", e.getId()));
+        } else {
+            return new CustomerError(HttpStatus.FORBIDDEN.value(), "Forbidden.");
+        }
+    }
+
+
+    @ExceptionHandler(BadRequestException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public CustomerError BadRequestException(BadRequestException e){
+        logger.error(HttpStatus.BAD_REQUEST.getReasonPhrase(),e);
+        return new CustomerError(e.getCode(), e.getMessage());
     }
 }

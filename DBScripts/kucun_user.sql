@@ -1,0 +1,1 @@
+INSERT INTO kucun.user (user_name, password, cell_phone, email, icon, created_time, updated_time, is_deleted) VALUES ('yxy', 'E10ADC3949BA59ABBE56E057F20F883E', '17603056679', null, '/avatar/16ed47a011e441a8bf705db090502b83.jpg', '2017-09-23 19:18:41', '2017-09-25 20:43:06', false);

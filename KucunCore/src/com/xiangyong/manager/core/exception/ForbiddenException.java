@@ -1,13 +1,10 @@
 package com.xiangyong.manager.core.exception;
 
-public class DataNotFoundException extends RuntimeException {
+public class ForbiddenException extends RuntimeException {
     private int id;
 
-    public DataNotFoundException(int id){
+    public ForbiddenException(int id){
         this.id =id;
-    }
-
-    public DataNotFoundException(){
     }
 
     public int getId() {

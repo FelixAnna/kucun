@@ -20,7 +20,7 @@ import static com.xiangyong.manager.common.util.NetworkUtils.*;
 
 @Api(tags = "可匿名访问接口")
 @RestController
-@RequestMapping("/anonymous/")
+@RequestMapping("anonymous")
 public class AnonymousController extends BaseController {
 
     @Autowired
@@ -29,8 +29,16 @@ public class AnonymousController extends BaseController {
     @Autowired
     private TokenBizService tokenBizService;
 
-    @ApiOperation(value="登录接口", notes="手机号/用户名/邮箱 + 密码，返回token+用户基本信息")
-    @RequestMapping(value = "/{source}/login",
+    /**
+     * 登录接口
+     * @param source Android or IOS
+     * @param parameter 手机号/用户名/邮箱 + 密码
+     * @param br
+     * @param request
+     * @return
+     */
+    @ApiOperation(value="", notes="手机号/用户名/邮箱 + 密码，返回token+用户基本信息")
+    @RequestMapping(value = "{source}/login",
             method = RequestMethod.POST,
             consumes = "application/json")
     public SimpleMemberDto Login(@PathVariable(name = "source") String source, @RequestBody @Valid  LoginParameter parameter, BindingResult br, HttpServletRequest request){

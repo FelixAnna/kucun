@@ -2,25 +2,21 @@ package com.xiangyong.manager.core.exception;
 
 import org.springframework.http.HttpStatus;
 
-public class CustomerError /*extends RuntimeException*/ {
+public class BadRequestException extends RuntimeException {
     private String message;
     private int code;
 
-    public CustomerError(HttpStatus status){
-        this.code=status.value();
-        this.message=status.getReasonPhrase();
-    }
-
-    public CustomerError(HttpStatus status, String message){
-        this.code=status.value();
-        this.message=message;
-    }
-
-    public CustomerError(int code, String message){
+    public BadRequestException(int code, String msg){
+        this.message =msg;
         this.code=code;
-        this.message=message;
     }
 
+    public BadRequestException(String msg){
+        this.message =msg;
+        this.code= HttpStatus.BAD_REQUEST.value();
+    }
+
+    @Override
     public String getMessage() {
         return message;
     }

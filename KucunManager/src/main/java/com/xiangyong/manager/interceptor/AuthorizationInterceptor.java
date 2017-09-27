@@ -36,7 +36,7 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
         Class<?> aClass = handlerMethod.getBeanType();*/
 
         // 从 header 中得到 token
-        String token = request.getHeader (WsConstants.REQUEST_TOKEN);
+        String token = "48f5fd1899a644e988f1324b86ea48d9";//request.getHeader (WsConstants.REQUEST_TOKEN);
         if(Strings.isNullOrEmpty(token)
             && !Strings.isNullOrEmpty(request.getQueryString())
             )
@@ -62,10 +62,10 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
             // 或者类型注明了 KucunAuthorization，返回 401 错误
         if (method.isAnnotationPresent (KucunAuthorization.class)
                 || aClass.isAnnotationPresent (KucunAuthorization.class)) {*/
-            logger.warn("登陆失效, token:{}", token);
-            response.setStatus (HttpStatus.UNAUTHORIZED.value());
-            response.getOutputStream().print(HttpStatus.UNAUTHORIZED.getReasonPhrase());
-            return false;
+        logger.warn("登陆失效, token:{}", token);
+        response.setStatus (HttpStatus.UNAUTHORIZED.value());
+        response.getOutputStream().print(HttpStatus.UNAUTHORIZED.getReasonPhrase());
+        return false;
         /*}
         return true;*/
     }

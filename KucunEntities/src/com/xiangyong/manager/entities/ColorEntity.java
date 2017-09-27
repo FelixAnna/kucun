@@ -10,6 +10,7 @@ public class ColorEntity {
     private String name;
     private String rgb;
     private Timestamp createdTime;
+    private int userId;
 
     @Id
     @Column(name = "color_id", nullable = false)
@@ -73,5 +74,15 @@ public class ColorEntity {
         result = 31 * result + (rgb != null ? rgb.hashCode() : 0);
         result = 31 * result + (createdTime != null ? createdTime.hashCode() : 0);
         return result;
+    }
+
+    @Basic
+    @Column(name = "user_id", nullable = false)
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

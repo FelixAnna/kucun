@@ -5,7 +5,7 @@ import com.xiangyong.manager.biz.interfaces.FileBizService;
 import com.xiangyong.manager.biz.interfaces.UserBizService;
 import com.xiangyong.manager.common.util.DataUtils;
 import com.xiangyong.manager.common.util.ValidUtils;
-import com.xiangyong.manager.core.exception.CustomerError;
+import com.xiangyong.manager.core.exception.BadRequestException;
 import com.xiangyong.manager.data.UserRepository;
 import com.xiangyong.manager.dto.LoginMiddleDto;
 import com.xiangyong.manager.dto.SimpleMemberDto;
@@ -55,7 +55,7 @@ public class UserBizServiceImp implements UserBizService {
             simpleMemberDto.setToken(UUID.randomUUID().toString().replace("-",""));
             return simpleMemberDto;
         } else {
-            throw new CustomerError(org.springframework.http.HttpStatus.BAD_REQUEST, "用户名或密码错误");
+            throw new BadRequestException("用户名或密码错误");
         }
     }
 

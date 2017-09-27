@@ -12,6 +12,7 @@ public class FactoryEntity {
     private Timestamp createdTime;
     private Timestamp updatedTime;
     private boolean isDeleted;
+    private int userId;
 
     @Id
     @Column(name = "factory_id", nullable = false)
@@ -99,5 +100,15 @@ public class FactoryEntity {
         result = 31 * result + (updatedTime != null ? updatedTime.hashCode() : 0);
         result = 31 * result + (isDeleted ? 1 : 0);
         return result;
+    }
+
+    @Basic
+    @Column(name = "user_id", nullable = false)
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }
