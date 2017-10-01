@@ -27,13 +27,7 @@ public class FactoryController extends BaseController{
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public FactoryEntity GetFactoryById(@PathVariable(name = "id")int id, @ApiIgnore @RequestAttribute SimpleMemberDto userInfo){
         FactoryEntity factoryEntity = this.factoryBizService.GetFactoryById(id);
-        if(factoryEntity == null ) {
-            throw new DataNotFoundException(id);
-        }
-
-        if(factoryEntity.getUserId() != userInfo.getUserId()){
-            throw new ForbiddenException(id);
-        }
+        entityCheck(factoryEntity, id, userInfo.getUserId());
 
         logger.info("User {} queried factory with id {}", userInfo.getUserId(), id);
 
@@ -64,12 +58,11 @@ public class FactoryController extends BaseController{
         }
 
         FactoryEntity factoryEntity = factoryBizService.GetFactoryById(id);
-        if(factoryEntity.getUserId() != userInfo.getUserId()){
-            throw new ForbiddenException(id);
-        }
+        entityCheck(factoryEntity, id, userInfo.getUserId());
 
         factoryEntity.setFactoryName(factoryParameter.getFactoryName());
         factoryEntity.setLink(factoryParameter.getLink());
+        factoryEntity.setUpdatedTime(Timestamp.valueOf(LocalDateTime.now()));
         FactoryEntity newEntity = factoryBizService.AddFactory(factoryEntity);
 
         logger.info("User {} updated factory with id {}", userInfo.getUserId(), newEntity.getFactoryId());
@@ -79,9 +72,7 @@ public class FactoryController extends BaseController{
     @RequestMapping(value = "{id}/remove", method = RequestMethod.DELETE)
     public boolean RemoveFactory(@PathVariable(name = "id")int id, @ApiIgnore @RequestAttribute SimpleMemberDto userInfo){
         FactoryEntity factoryEntity = factoryBizService.GetFactoryById(id);
-        if(factoryEntity.getUserId() != userInfo.getUserId()){
-            throw new ForbiddenException(id);
-        }
+        entityCheck(factoryEntity, id, userInfo.getUserId());
         boolean result = factoryBizService.RemoveFactory(id);
         logger.info("User {} removed factory with id {}", userInfo.getUserId(), factoryEntity.getFactoryId());
         return result;
@@ -95,5 +86,15 @@ public class FactoryController extends BaseController{
         }
 
         return factoryEntities;
+    }
+
+    private void entityCheck(FactoryEntity factoryEntity, int id, int userId){
+        if(factoryEntity == null ) {
+            throw new DataNotFoundException(id);
+        }
+
+        if(factoryEntity.getUserId() != userId){
+            throw new ForbiddenException(id);
+        }
     }
 }

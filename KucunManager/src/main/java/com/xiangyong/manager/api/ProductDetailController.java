@@ -97,7 +97,7 @@ public class ProductDetailController extends BaseController {
         productBasicEntities.forEach(x->{
             productDetailEntities.addAll(productDetailBizService.GetProductDetailsByProductBasicId(x.getProductBasicId()));
         });
-        productDetailBizService.GetProductDetailsByProductBasicId(userInfo.getUserId());
+
         if(productDetailEntities == null ) {
             throw new DataNotFoundException();
         }
